@@ -1,0 +1,21 @@
+{
+  "name": "lunr-js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/marcus7777/lunr-js",
+  "authors": [
+    "Marcus Hitchins <marcus7777@gmail.com>"
+  ],
+  "description": "polymer element for https://github.com/olivernn/lunr.js",
+  "main": "lunr-js.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lunr.js": "olivernn/lunr.js#~0.5.11"
+  }
+}
