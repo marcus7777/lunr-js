@@ -1,41 +1,37 @@
-<link rel="import" href="../lunr.js/lunr.min.js">
-<dom-module id="lunr-js">
-  <script>
-    (function() {
-      var nIntervId;
-      Polymer({
-        is: 'lunr-js',
-        properties: {
-          data:{
-            type: Array
-          },
-          search: {
-            type: String
-          },
-          output: {
-            computed: "searched(data,search)"
-          },
-          index: {
-            computed: "makeIndex(data)"
-          }
-          
+<script rel="import" href="../lunr.js/lunr.min.js"></script>
+<script>
+  (function() {
+    Polymer({
+      is: 'lunr-js',
+      properties: {
+        data:{
+          type: Array
         },
-        searched: function(data,search) {
-          // add ids 
-          return [];
+        search: {
+          type: String
         },
-        makeIndex: function(data) {
-          // find fields
-          console.log(data[data.length - 1]);
-          
-          // setup boosts
-          return lunr(function () {
-              this.field('title', {boost: 10})
-              this.field('body')
-              this.ref('id')
-          });
+        output: {
+          computed: "searched(data,search)"
+        },
+        index: {
+          computed: "makeIndex(data)"
         }
-      });
-    })();
-  </script>
-</dom-module>
+      },
+      searched: function(data,search) {
+        // add ids 
+        return [];
+      },
+      makeIndex: function(data) {
+        // find fields
+        console.log(data[data.length - 1]);
+        
+        // setup boosts
+        return lunr(function () {
+          this.field('title', {boost: 10})
+          this.field('body')
+          this.ref('id')
+        });
+      }
+    });
+  })();
+</script>
