@@ -1,1 +1,33 @@
 <link rel="import" href="../lunr.js/lunr.min.js">
+<dom-module id="lunr-js">
+  <script>
+    (function() {
+      var nIntervId;
+      Polymer({
+        is: 'lunr-js',
+        properties: {
+          data:{
+            type: Array
+          },
+          search: {
+            type: String
+          },
+          output: {
+            computed: "searched(data,search)"
+          },
+          index: {
+            computed: "makeIndex(data)"
+          },
+          
+        },
+        searched: function(data,search) {
+          // add 
+          return [];
+        },
+        makeIndex: function() {
+          return ;
+        }
+      };
+    })();
+  </script>
+</dom-module>
