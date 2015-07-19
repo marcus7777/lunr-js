@@ -17,15 +17,23 @@
           },
           index: {
             computed: "makeIndex(data)"
-          },
+          }
           
         },
         searched: function(data,search) {
-          // add 
+          // add ids 
           return [];
         },
-        makeIndex: function() {
-          return ;
+        makeIndex: function(data) {
+          // add ids 
+          // find fields
+          
+          // setup boosts
+          return lunr(function () {
+              this.field('title', {boost: 10})
+              this.field('body')
+              this.ref('id')
+          });
         }
       };
     })();
