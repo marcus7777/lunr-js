@@ -11,14 +11,20 @@
           type: String
         },
         output: {
-          computed: "searched(data,search)"
+          computed: "searched(data,search,index)"
         },
         index: {
           computed: "makeIndex(data)"
         }
       },
-      searched: function(data,search) {
-        // add ids 
+      searched: function(data,search,index) {
+        
+        console.log("data",data);
+        console.log("search",search);
+        console.log("index",index);
+        
+        // add ids
+        
         return [];
       },
       makeIndex: function(data) {
