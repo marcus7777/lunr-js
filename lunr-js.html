@@ -32,11 +32,15 @@
         console.log(data[data.length - 1]);
         
         // setup boosts
-        return lunr(function () {
+        var index = lunr(function () {
           this.field('title', {boost: 10})
           this.field('body')
           this.ref('id')
         });
+        
+        // index.add() all data
+        
+        return index;
       }
     });
   })();
