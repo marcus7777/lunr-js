@@ -30,16 +30,17 @@
       makeIndex: function(data) {
         // find fields
         console.log(data[data.length - 1]);
-        
-        // setup boosts
         var index = lunr(function () {
-          this.field('title', {boost: 10})
-          this.field('body')
-          this.ref('id')
+          for (var prop in data[data.length - 1]) {
+            this.field(prop);
+          }
         });
-        
-        // index.add() all data
-        
+        // setup boosts TODO
+        for (var i = 0; i < data.lenght; i++) {
+          data[i].id = i;
+          index.add(data[i])
+       }
+        console.log(index);
         return index;
       }
     });
