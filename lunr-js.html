@@ -23,6 +23,10 @@
         
         // ids
         var searched = index.search(search);
+        var output = [];
+        for (var i = 0; i < searched.length; i++) {
+            output.push(data[searched[i].ref])
+        }
         console.log("searched",searched);
         
         return [];
