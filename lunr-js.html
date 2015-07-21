@@ -14,6 +14,9 @@
         },
         index: {
           computed: "makeIndex(data)"
+        },
+        fields {
+          type: Array
         }
       },
       searched: function(data,search,index) {
@@ -25,22 +28,31 @@
         return output;
       },
       makeIndex: function(data) {
-        var start = performance.now()
-        // find fields
-        console.log(data[data.length - 1]);
-        var index = lunr(function () {
-          for (var prop in data[data.length - 1]) {
-            this.field(prop);
-          }
-        });
+        var start = performance.now();
+        if (Array.isArray(this.fields) && this.fields.length > 0) {
+          var index = lunr(function () {
+            for (var i = 0; i < fields.length; i++) {
+              this.field(fields[i]);
+            }
+          });
+        } else {
+          // find fields
+          console.log(data[data.length - 1]);
+          var index = lunr(function () {
+            for (var prop in data[data.length - 1]) {
+              this.field(prop);
+            }
+          });
+        }
+
         // setup boosts TODO
         
         for (var i = 0; i < data.length; i++) {
           data[i].id = i;
           index.add(data[i])
-       }
+      }
        console.log("make index time", performance.now() - start);
        return index;
       }
-    });
+});
 </script>
