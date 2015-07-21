@@ -20,13 +20,12 @@
         var searched = index.search(search);
         var output = [];
         for (var i = 0; i < searched.length; i++) {
-            output.push(data[searched[i].ref]);
+          output.push(data[searched[i].ref]);
         }
         return output;
       },
       makeIndex: function(data) {
-          
-      var start = performance.now()
+        var start = performance.now()
         // find fields
         console.log(data[data.length - 1]);
         var index = lunr(function () {
