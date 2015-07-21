@@ -17,19 +17,12 @@
         }
       },
       searched: function(data,search,index) {
-        
-        console.log("search",search);
-        console.log("index",index);
-        
-        // ids
         var searched = index.search(search);
         var output = [];
         for (var i = 0; i < searched.length; i++) {
-            output.push(data[searched[i].ref])
+            output.push(data[searched[i].ref]);
         }
-        console.log("searched",searched);
-        
-        return [];
+        return output;
       },
       makeIndex: function(data) {
         // find fields
