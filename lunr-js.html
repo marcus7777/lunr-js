@@ -18,11 +18,12 @@
       },
       searched: function(data,search,index) {
         
-        console.log("data",data);
         console.log("search",search);
         console.log("index",index);
         
-        // add ids
+        // ids
+        var searched = index.search(search);
+        console.log("searched",searched);
         
         return [];
       },
