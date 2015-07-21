@@ -1,58 +1,57 @@
 <script rel="import" src="../lunr.js/lunr.min.js"></script>
 <script>
-    Polymer({
-      is: 'lunr-js',
-      properties: {
-        data:{
-          type: Array
-        },
-        search: {
-          type: String
-        },
-        output: {
-          computed: "searched(data,search,index)", notify: true
-        },
-        index: {
-          computed: "makeIndex(data)"
-        },
-        fields {
-          type: Array
-        }
+  Polymer({
+    is: 'lunr-js',
+    properties: {
+      data:{
+        type: Array
       },
-      searched: function(data,search,index) {
-        var searched = index.search(search);
-        var output = [];
-        for (var i = 0; i < searched.length; i++) {
-          output.push(data[searched[i].ref]);
-        }
-        return output;
+      search: {
+        type: String
       },
-      makeIndex: function(data) {
-        var start = performance.now();
-        if (Array.isArray(this.fields) && this.fields.length > 0) {
-          var index = lunr(function () {
-            for (var i = 0; i < fields.length; i++) {
-              this.field(fields[i]);
-            }
-          });
-        } else {
-          // find fields
-          console.log(data[data.length - 1]);
-          var index = lunr(function () {
-            for (var prop in data[data.length - 1]) {
-              this.field(prop);
-            }
-          });
-        }
-
-        // setup boosts TODO
+      output: {
+        computed: "searched(data,search,index)", notify: true
+      },
+      index: {
+        computed: "makeIndex(data)"
+      },
+      fields {
+        type: Array
+      }
+    },
+    searched: function(data,search,index) {
+      var searched = index.search(search);
+      var output = [];
+      for (var i = 0; i < searched.length; i++) {
+        output.push(data[searched[i].ref]);
+      }
+      return output;
+    },
+    makeIndex: function(data) {
+      var start = performance.now();
+      if (Array.isArray(this.fields) && this.fields.length > 0) {
+        var index = lunr(function () {
+          for (var i = 0; i < fields.length; i++) {
+            this.field(fields[i]);
+          }
+        });
+      } else {
+        // find fields
+        console.log(data[data.length - 1]);
+        var index = lunr(function () {
+          for (var prop in data[data.length - 1]) {
+            this.field(prop);
+          }
+        });
+      }
+      // setup boosts TODO
         
-        for (var i = 0; i < data.length; i++) {
-          data[i].id = i;
-          index.add(data[i])
+      for (var i = 0; i < data.length; i++) {
+        data[i].id = i;
+        index.add(data[i])
       }
-       console.log("make index time", performance.now() - start);
-       return index;
-      }
-});
+      console.log("make index time", performance.now() - start);
+      return index;
+    }
+  });
 </script>
