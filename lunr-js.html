@@ -13,7 +13,7 @@
         computed: "searched(data,search,index)", notify: true
       },
       index: {
-        computed: "makeIndex(data)"
+        computed: "makeIndex(data,fields)"
       },
       fields: {
         type: Array
@@ -37,7 +37,7 @@
         });
       } else {
         // find fields
-        console.log(data[data.length - 1]);
+        console.log("find fields form",data[data.length - 1]);
         var index = lunr(function () {
           for (var prop in data[data.length - 1]) {
             this.field(prop);
