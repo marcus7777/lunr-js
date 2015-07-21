@@ -25,6 +25,8 @@
         return output;
       },
       makeIndex: function(data) {
+          
+      var start = performance.now()
         // find fields
         console.log(data[data.length - 1]);
         var index = lunr(function () {
@@ -33,12 +35,13 @@
           }
         });
         // setup boosts TODO
+        
         for (var i = 0; i < data.length; i++) {
           data[i].id = i;
           index.add(data[i])
        }
-        console.log(index);
-        return index;
+       console.log("make index time", performance.now() - start);
+       return index;
       }
     });
 </script>
