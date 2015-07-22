@@ -4,7 +4,8 @@
     is: 'lunr-js',
     properties: {
       data:{
-        type: Array
+        type: Array,
+        value: []
       },
       search: {
         type: String
@@ -16,7 +17,8 @@
         computed: "makeIndex(data,fields)"
       },
       fields: {
-        type: Array
+        type: Array,
+        value: []
       }
     },
     searched: function(data,search,index) {
