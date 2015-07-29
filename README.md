@@ -28,6 +28,6 @@ Needed
 
 Options
 
-```fields```
+```fields``` : Fields to search
 
-```limit```
+```limit```: Limit results
