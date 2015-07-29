@@ -29,7 +29,7 @@
       var output = [];
       for (var i = 0; i < searched.length; i++) {
         output.push(data[searched[i].ref]);
-        if (i === this.limit) { break; }
+        if (!(i < this.limit)) { break; }
       }
       
       return output;
