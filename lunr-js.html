@@ -19,12 +19,13 @@
       fields: {
         type: Array,
         value: []
-      }
+      },
+      limit: Number,value: 20
     },
     searched: function(data,search,index) {
       var searched = index.search(search);
       var output = [];
-      for (var i = 0; i < searched.length; i++) {
+      for (var i = 0; ( i < searched.length || i < this.limit ); i++) {
         output.push(data[searched[i].ref]);
       }
       return output;
