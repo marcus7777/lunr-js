@@ -39,6 +39,7 @@
         });
       } else {
         // find fields
+        // TODO only word best fields.
         console.log("find fields form",data[data.length - 1]);
         var index = lunr(function () {
           for (var prop in data[data.length - 1]) {
