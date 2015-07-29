@@ -33,3 +33,5 @@ Options
 ```fields``` : Fields to search
 
 ```limit```: Limit results
+
+```minScore```: From 0 to 1 
