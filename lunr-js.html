@@ -4,8 +4,7 @@
     is: 'lunr-js',
     properties: {
       data:{
-        type: Array,
-        value: []
+        type: Array, value: []
       },
       search: {
         type: String
@@ -17,18 +16,20 @@
         computed: "makeIndex(data,fields)"
       },
       fields: {
-        type: Array,
-        value: []
+        type: Array, value: []
       },
       limit: {
         type:Number, value:20
+      },
+      minScore {
+        type:Number, value:0
       }
     },
     searched: function(data,search,index) {
       var searched = index.search(search);
       var output = [];
       for (var i = 0; i < searched.length; i++) {
-        if (i < this.limit) { break; }
+        if (i < this.limit || searched[i].score < this.minScore) { break; }
         output.push(data[searched[i].ref]);
       }
       
