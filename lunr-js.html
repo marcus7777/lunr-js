@@ -29,7 +29,7 @@
       var searched = index.search(search);
       var output = [];
       for (var i = 0; i < searched.length; i++) {
-        if (i < this.limit || searched[i].score < this.minScore) { break; }
+        if (i === this.limit || searched[i].score < this.minScore) { break; }
         output.push(data[searched[i].ref]);
       }
       
