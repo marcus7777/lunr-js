@@ -16,6 +16,7 @@ more
   output="{{output}}"
   fields="['name','tags']"
   limit=30
+  minScore=.5
   >
 </lunr-js>
 ```
