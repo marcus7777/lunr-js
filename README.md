@@ -2,11 +2,11 @@
 
 To use 
 ```
-<paper-filter
+<lunr-js
   data="[[data]]"
   search="{{search}}"
   output="{{output}}" >
-</paper-filter>
+</lunr-js>
 ```
 
 ```data``` : An Array of Objects with common properties.
