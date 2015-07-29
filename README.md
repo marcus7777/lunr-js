@@ -20,6 +20,7 @@ more
 </lunr-js>
 ```
 Needed
+
 ```data``` : An Array of Objects with common properties.
 
 ```search``` : Search term.
