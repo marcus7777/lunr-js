@@ -1,5 +1,7 @@
 # lunr-js
 
+##A Polymer filter using [lunr.js](https://github.com/olivernn/lunr.js) for a Array of Objects with common properties.
+
 To use 
 ```
 <lunr-js
