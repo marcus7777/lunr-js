@@ -59,7 +59,12 @@
         data[i].id = i;
         index.add(data[i])
       }
-      console.log("make index time", performance.now() - start);
+      if (this.log) {
+        var time = performance.now() - start;
+        var size = JSON.stringify(index).length;
+        console.log("Make Index Time", time);
+        console.log("Network size index", size);
+      }
       return index;
     }
   });
