@@ -37,7 +37,7 @@
       return output;
     },
     makeIndex: function(data, fields) {
-      var start = performance.now();
+      if (this.log) {var start = performance.now();}
       if (Array.isArray(this.fields) && this.fields.length > 0) {
         var index = lunr(function () {
           for (var i = 0; i < fields.length; i++) {
