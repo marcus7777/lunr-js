@@ -37,3 +37,5 @@ Options
 ```limit```: Limit results
 
 ```minScore```: From 0 to 1 
+
+```log```: if you are seeing what's happening
