@@ -1,11 +1,15 @@
 {
   "name": "lunr-js",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/marcus7777/lunr-js",
   "authors": [
     "Marcus Hitchins <marcus7777@gmail.com>"
   ],
   "description": "polymer element for https://github.com/olivernn/lunr.js",
+  "keywords": [
+    "web-components",
+    "Polymer"
+  ],
   "main": "lunr-js.html",
   "license": "MIT",
   "ignore": [
