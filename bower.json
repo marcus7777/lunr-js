@@ -7,6 +7,7 @@
   ],
   "description": "polymer element for https://github.com/olivernn/lunr.js",
   "keywords": [
+    "search",
     "web-components",
     "Polymer"
   ],
