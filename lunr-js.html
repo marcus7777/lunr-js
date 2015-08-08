@@ -1,42 +1,84 @@
 <script rel="import" src="../lunr.js/lunr.min.js"></script>
 <script>
+/**
+ * `<lunr-js>` 
+ *  To use 
+ * ```
+ * <lunr-js
+ *   data="[[data]]"
+ *   search="{{search}}"
+ *   output="{{output}}" >
+ * </lunr-js>
+ * 
+ *```
+ * 
+ * 
+ */
   Polymer({
     is: 'lunr-js',
     properties: {
+      /** The data that you'd like to be searched. */
       data:{
         type: Array, value: []
       },
+      /** The search term that filters results. */
       search: {
         type: String
       },
+      /** The filtered data. */
       output: {
-        computed: "searched(data,search,index)", notify: true
+        computed: "searched(data, search, index, minScore, limit)", notify: true
       },
+      /** The lunr Index. */
       index: {
-        computed: "makeIndex(data,fields)"
+        computed: "makeIndex(data, fields)"
       },
+      /** The fields to be searched. */
       fields: {
         type: Array, value: []
       },
+      /** The maximum number of results you'd like your output. */
       limit: {
         type:Number, value:20
       },
+      /** The minimum score of your results. */
       minScore: {
         type:Number, value:0
       },
+      /** Whether you would like console.log output. */
       log:Boolean
     },
-    searched: function(data,search,index) {
+    /**
+     * Filters your input data
+     * 
+     * @param {Array} data Array of Objects with common properties.
+     * @param {String} search The search term that filters results.
+     * @param {Object} index The lunr Index..
+     * @param {Number} minScore The minimum score of your results.
+     * @param {Number} limit The maximum number of results you'd like your output.
+     * 
+     * @return {Array} The filtered data.
+     */
+    searched: function(data, search, index, minScore, limit) {
       var searched = index.search(search);
       var output = [];
       for (var i = 0; i < searched.length; i++) {
-        if (i === this.limit || searched[i].score < this.minScore) { break; }
+        if (i === limit || searched[i].score < minScore) { break; }
         output.push(data[searched[i].ref]);
       }
       
       return output;
     },
+    /**
+     * Makes the Index of the data
+     * 
+     * @param {Array} data Array of Objects with common properties.
+     * @param {Array} fields Optional Array of strings of common properties 
+     *   to be indexed
+     * @return {Object} The lunr index.
+     */
     makeIndex: function(data, fields) {
+      // TODO availability of importing a already prepared index
       if (this.log) {var start = performance.now();}
       if (Array.isArray(this.fields) && this.fields.length > 0) {
         var index = lunr(function () {
