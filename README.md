@@ -2,6 +2,7 @@
 
 ##A Polymer filter using [lunr.js](https://github.com/olivernn/lunr.js) for a Array of Objects with common properties.
 
+[demo](http://jsbin.com/kohiwo/1/edit?html,output)
 To use 
 ```
 <lunr-js
