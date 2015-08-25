@@ -1,15 +1,14 @@
 <!doctype html>
 
 <html>
-<head><base href="http://open-elements.org/bower_components/lunr-js/">
-
+<head>
   <meta charset="utf-8">
 
   <title>lunr-js demo</title>
 
-  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="lunr-js.html">
-  <link rel="import" href="../iron-ajax/iron-ajax.html">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../lunr-js.html">
+  <link rel="import" href="../../iron-ajax/iron-ajax.html">
  
 </head>
 <body>
@@ -28,6 +27,7 @@
       search="{{search}}"
       output="{{output}}" >
     </lunr-js>
+    
     <p>output:</p>
     <template is="dom-repeat" items="{{output}}">
       <h2>{{item.title}}</h2>
