@@ -1,8 +1,38 @@
+<!doctype html>
 
+<html>
+<head><base href="http://open-elements.org/bower_components/lunr-js/">
 
+  <meta charset="utf-8">
 
-<lunr-js
-  data="[[data]]"
-  search="{{search}}"
-  output="{{output}}" >
-</lunr-js>
+  <title>lunr-js demo</title>
+
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="lunr-js.html">
+  <link rel="import" href="../iron-ajax/iron-ajax.html">
+ 
+</head>
+<body>
+  <template is="dom-bind">
+    <iron-ajax auto
+      url="http://jsonplaceholder.typicode.com/posts"
+      handle-as="json"
+      last-response="{{data}}">
+    </iron-ajax>
+    
+    <a href="http://jsonplaceholder.typicode.com/posts">see the json</a>
+    <p>Type in <input value="{{search::input}}" /> and see it search all the data</p>
+
+    <lunr-js
+      data="{{data}}"
+      search="{{search}}"
+      output="{{output}}" >
+    </lunr-js>
+    <p>output:</p>
+    <template is="dom-repeat" items="{{output}}">
+      <h2>{{item.title}}</h2>
+      <p>{{item.body}}</p>
+    </template>
+  </template>
+</body>
+</html>
