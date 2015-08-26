@@ -14,12 +14,12 @@
 <body>
   <template is="dom-bind">
     <iron-ajax auto
-      url="http://jsonplaceholder.typicode.com/posts"
+      url="https://api.github.com/repos/marcus7777/open-elements.org/issues"
       handle-as="json"
       last-response="{{data}}">
     </iron-ajax>
     
-    <a href="http://jsonplaceholder.typicode.com/posts">see the json</a>
+    <a href="https://api.github.com/repos/marcus7777/open-elements.org/issues">see the <span>{{data.length}}</span> open issues in the json</a>
     <p>Type in <input value="{{search::input}}" /> and see it search all the data</p>
 
     <lunr-js
@@ -30,9 +30,11 @@
     
     <p>output:</p>
     <template is="dom-repeat" items="{{output}}">
+      <span>{{index}}</span>
       <h2>{{item.title}}</h2>
       <p>{{item.body}}</p>
     </template>
+
   </template>
 </body>
 </html>
