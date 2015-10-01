@@ -29,7 +29,7 @@
         suite('basic usage', function () {
           test('can find 1,2 or 3', function(done) {
             lunrJs.search = 2
-            if (lunrJs.output.1.test === 2) {
+            if (lunrJs.output[1].test == 2) {
               done();
             }
           });
