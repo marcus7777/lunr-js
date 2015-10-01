@@ -37,7 +37,7 @@
           });
           test('can not find 4', function(done) {
             lunrJs.search = 4;
-            if (lunrJs.output[0].test == 4) {
+            if (!lunrJs.output[0]) {
               done();
             }
           });
