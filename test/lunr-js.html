@@ -22,14 +22,14 @@
         setup(function () {
           lunrJs = fixture('lunrJs');
           lunrJs.data = [{test:1},{test:2},{test:3}]
+          lunrJs.search = "2";
         });
         teardown(function () {
           //...
         });
         suite('basic usage', function () {
           test('can find 1,2 or 3', function(done) {
-            lunrJs.search = 2
-            if (lunrJs.output[1].test == 2) {
+            if (lunrJs.output[0].test == 2) {
               done();
             }
           });
