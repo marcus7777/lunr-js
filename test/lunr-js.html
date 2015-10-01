@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>lunr-js</title>
+    <script src="../../webcomponentsjs/webcomponents.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+    <script src="../../test-fixture/test-fixture-mocha.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+
+    <link rel="import" href="../../test-fixture/test-fixture.html">
+    <link rel="import" href="../lunr-js.html">
+  </head>
+  <body>
+    <test-fixture id="lunrJs">
+      <template>
+        <lunr-js></lunr-js>
+      </template>
+    </test-fixture>
+    <script>
+      suite('<lunr-js>', function () {
+        var lunrJs;
+        setup(function () {
+          lunrJs = fixture('lunrJs');
+          lunrJs.data = [{test:1},{test:2},{test:3}]
+        });
+        teardown(function () {
+          //...
+        });
+        suite('basic usage', function () {
+          test('can find 1,2 or 3', function(done) {
+            lunrJs.search = 2
+            if (lunrJs.output.1.test === 2) {
+              done();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
