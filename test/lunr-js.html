@@ -19,17 +19,25 @@
     <script>
       suite('<lunr-js>', function () {
         var lunrJs;
+        var lookFor = ""+(Math.floor(Math.random() * 3) + 1)  
         setup(function () {
           lunrJs = fixture('lunrJs');
-          lunrJs.data = [{test:1},{test:2},{test:3}]
-          lunrJs.search = "2";
+          lunrJs.data = [{test:1},{test:2},{test:3}];
         });
         teardown(function () {
           //...
         });
         suite('basic usage', function () {
           test('can find 1,2 or 3', function(done) {
-            if (lunrJs.output[0].test == 2) {
+            
+            lunrJs.search = lookFor;
+            if (lunrJs.output[0].test == lookFor) {
+              done();
+            }
+          });
+          test('can not find 4', function(done) {
+            lunrJs.search = 4;
+            if (lunrJs.output[0].test == 4) {
               done();
             }
           });
