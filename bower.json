@@ -13,12 +13,6 @@
   ],
   "main": "lunr-js.html",
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "tests"
-  ],
   "dependencies": {
     "lunr.js": "olivernn/lunr.js#~0.5.11"
   },
