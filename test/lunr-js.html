@@ -29,7 +29,6 @@
         });
         suite('basic usage', function () {
           test('can find 1,2 or 3', function(done) {
-            
             lunrJs.search = lookFor;
             if (lunrJs.output[0].test == lookFor) {
               done();
