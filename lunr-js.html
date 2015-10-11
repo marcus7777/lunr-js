@@ -84,7 +84,7 @@ Polymer({
       var start = performance.now()
     }
 
-    if (Array.isArray(this.fields) && this.fields.length > 0) {
+    if (Array.isArray(fields) && fields.length > 0) {
       var index = lunr(function () {
         for (var i = 0; i < fields.length; i++) {
           this.field(fields[i])
@@ -93,10 +93,10 @@ Polymer({
     } else {
       // find fields
       // TODO only word best fields.
-      console.log('find fields form', data[data.length - 1])
       var index = lunr(function () {
         for (var prop in data[data.length - 1]) {
           this.field(prop)
+          this.fields.push(prop)
         }
       })
     }
@@ -104,7 +104,11 @@ Polymer({
 
     for (var i = 0; i < data.length; i++) {
       data[i].id = i
-      index.add(data[i])
+      var toIndex = {}
+      for (var f = 0;f < this.fields.length; f++) {
+        toIndex[this.fields[f]] = data[i][this.fields[f]]
+      }
+      index.add(toIndex)
     }
     if (this.log) {
       var time = performance.now() - start
