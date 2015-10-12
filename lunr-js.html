@@ -93,11 +93,11 @@ Polymer({
     } else {
       // find fields
       // TODO only word best fields.
-      this.fields = []
+      fields = []
       var index = lunr(function () {
         for (var prop in data[data.length - 1]) {
           this.field(prop)
-          this.fields.push(prop)
+          fields.push(prop)
         }
       })
     }
