@@ -104,8 +104,8 @@ Polymer({
     // setup boosts TODO
 
     for (var i = 0; i < data.length; i++) {
-      data[i].id = i
       var toIndex = {}
+      toIndex[i].id = i
       for (var f = 0;f < this.fields.length; f++) {
         toIndex[this.fields[f]] = data[i][this.fields[f]]
       }
