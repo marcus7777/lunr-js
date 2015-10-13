@@ -25,7 +25,7 @@ Polymer({
     /** The filtered data. */
     output: {computed: 'searched(data, search, index, minScore, limit)', notify: true},
     /** If no Stop Words (no-stop-words)*/
-    noStopWords: {type:Boolean, value:false}
+    noStopWords: {type:Boolean, value:false},
     /** The lunr Index. */
     index: {computed: 'makeIndex(data, fields, noStopWords)'},
     /** The fields to be searched. */
