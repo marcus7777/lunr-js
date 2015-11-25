@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/marcus7777/lunr-js.svg?branch=master)](https://travis-ci.org/marcus7777/lunr-js)
 # lunr-js
 
 ##A Polymer filter using [lunr.js](https://github.com/olivernn/lunr.js) for a Array of Objects with common properties.
