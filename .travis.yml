@@ -14,4 +14,4 @@ before_script:
 - export PATH=$PWD/node_modules/.bin:$PATH
 - bower install
 script:
-- xvfb-run wct --skip-plugin local
+- xvfb-run wct --skip-plugin sauce
