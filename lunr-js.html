@@ -75,9 +75,7 @@ Polymer({
    */
   makeIndex: function (data, fields, noStopWords) {
     // TODO availability of importing a already prepared index
-    if (noStopWords) {
-      lunr.stopWordFilter.stopWords = {}
-    } 
+
     if (this.log) {
       var start = performance.now()
     }
@@ -116,6 +114,9 @@ Polymer({
       console.log('Make Index Time', time)
       console.log('Network size index', size)
     }
+    if (noStopWords) {
+      index.pipeline.remove(lunr.stopWordFilter)
+    } 
     return index
   }
 })
