@@ -38,15 +38,15 @@ Polymer({
     log: Boolean
   },
   /**
-   * Filters your input data
-   * 
-   * @param {Array} data Array of Objects with common properties.
-   * @param {String} search The search term that filters results.
-   * @param {Object} index The lunr Index..
-   * @param {Number} minScore The minimum score of your results.
-   * @param {Number} limit The maximum number of results you'd like your output.
-   * 
-   * @return {Array} The filtered data.
+    Filters your input data
+    
+    @param {Array} data Array of Objects with common properties.
+    @param {String} search The search term that filters results.
+    @param {Object} index The lunr Index..
+    @param {Number} minScore The minimum score of your results.
+    @param {Number} limit The maximum number of results you'd like your output.
+    
+    @return {Array} The filtered data.
    */
   searched: function (data, search, index, minScore, limit) { if (data) {
     if (""+search !== "") {
@@ -66,12 +66,12 @@ Polymer({
     return output
   }},
   /**
-   * Makes the Index of the data
-   * 
-   * @param {Array} data Array of Objects with common properties.
-   * @param {Array} fields Optional Array of strings of common properties 
-   *   to be indexed
-   * @return {Object} The lunr index.
+    Makes the Index of the data
+    
+    @param {Array} data Array of Objects with common properties.
+    @param {Array} fields Optional Array of strings of common properties 
+      to be indexed
+    @return {Object} The lunr index.
    */
   makeIndex: function (data, fields, noStopWords) {
     // TODO availability of importing a already prepared index
