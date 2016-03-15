@@ -48,7 +48,7 @@ Polymer({
    * 
    * @return {Array} The filtered data.
    */
-  searched: function (data, search, index, minScore, limit) {
+  searched: function (data, search, index, minScore, limit) { if (data) {
     if (""+search !== "") {
       var searched = index.search(search)
       var output = []
@@ -64,7 +64,7 @@ Polymer({
       }
     }
     return output
-  },
+  }},
   /**
    * Makes the Index of the data
    * 
