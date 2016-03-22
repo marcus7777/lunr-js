@@ -5,7 +5,7 @@
   "authors": [
     "Marcus Hitchins <marcus7777@gmail.com>"
   ],
-  "description": "polymer element for https://github.com/olivernn/lunr.js",
+  "description": "polymer rapper for https://github.com/olivernn/lunr.js",
   "keywords": [
     "search",
     "web-components",
