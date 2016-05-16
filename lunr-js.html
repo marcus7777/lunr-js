@@ -84,50 +84,52 @@ Polymer({
     @return {Object} The lunr index.
    */
   makeIndex: function (data, fields, noStopWords) {
-    // TODO availability of importing a already prepared index
+    if (data && data !== null) {
+      // TODO availability of importing a already prepared index
 
-    if (this.log) {
-      var start = performance.now()
-    }
-
-    if (Array.isArray(fields) && fields.length > 0) {
-      var index = lunr(function () {
-        for (var i = 0; i < fields.length; i++) {
-          this.field(fields[i])
-        }
-      })
-    } else {
-      // find fields
-      // TODO only word best fields.
-      fields = []
-      var index = lunr(function () {
-        for (var prop in data[data.length - 1]) {
-          this.field(prop)
-          fields.push(prop)
-        }
-      })
-    }
-    // setup boosts TODO
-
-    for (var i = 0; i < data.length; i++) {
-      var toIndex = {id: i}
-      for (var f = 0;f < fields.length; f++) {
-        if (data[i].hasOwnProperty(fields[f]) && data[i][fields[f]] !== null) {
-          toIndex[fields[f]] = data[i][fields[f]].toString()
-        }
+      if (this.log) {
+        var start = performance.now()
       }
-      index.add(toIndex)
+
+      if (Array.isArray(fields) && fields.length > 0) {
+        var index = lunr(function () {
+          for (var i = 0; i < fields.length; i++) {
+            this.field(fields[i])
+          }
+        })
+      } else {
+        // find fields
+        // TODO only word best fields.
+        fields = []
+        var index = lunr(function () {
+          for (var prop in data[data.length - 1]) {
+            this.field(prop)
+            fields.push(prop)
+          }
+        })
+      }
+      // setup boosts TODO
+
+      for (var i = 0; i < data.length; i++) {
+        var toIndex = {id: i}
+        for (var f = 0;f < fields.length; f++) {
+          if (data[i].hasOwnProperty(fields[f]) && data[i][fields[f]] !== null) {
+            toIndex[fields[f]] = data[i][fields[f]].toString()
+          }
+        }
+        index.add(toIndex)
+      }
+      if (this.log) {
+        var time = performance.now() - start
+        var size = JSON.stringify(index).length
+        console.log('Make Index Time', time)
+        console.log('Network size index', size)
+      }
+      if (noStopWords) {
+        index.pipeline.remove(lunr.stopWordFilter)
+      } 
+      return index
     }
-    if (this.log) {
-      var time = performance.now() - start
-      var size = JSON.stringify(index).length
-      console.log('Make Index Time', time)
-      console.log('Network size index', size)
-    }
-    if (noStopWords) {
-      index.pipeline.remove(lunr.stopWordFilter)
-    } 
-    return index
   }
 })
 
