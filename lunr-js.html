@@ -6,7 +6,7 @@
  *  To use 
  * ```
  * <lunr-js
- *   data="{[data}]"
+ *   data="{{data}}"
  *   search="{{search}}"
  *   output="{{output}}" >
  * </lunr-js>
@@ -25,12 +25,13 @@ Polymer({
     debounceing: {
       computed: 'debounceInput(search)'
     },
+    _search: {value:""},
     /** The filtered data. */
     output: {computed: 'searched(data, _search, index, minScore, limit)', notify: true},
     /** If no Stop Words (no-stop-words)*/
     noStopWords: {type:Boolean, value:false},
     /** The lunr Index. */
-    index: {computed: 'makeIndex(data.*, fields, noStopWords)'},
+    index: {computed: 'makeIndex(data, fields, noStopWords)'},
     /** The fields to be searched. */
     fields: {type: Array, value: []},
     /** The maximum number of results you'd like your output. */
@@ -83,7 +84,6 @@ Polymer({
     @return {Object} The lunr index.
    */
   makeIndex: function (data, fields, noStopWords) {
-    data = data.base
     // TODO availability of importing a already prepared index
 
     if (this.log) {
