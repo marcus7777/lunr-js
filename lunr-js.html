@@ -22,8 +22,11 @@ Polymer({
     data: {type: Array, value: []},
     /** The search term that filters results. */
     search: String,
+    debounceing: {
+      computed: 'debounceInput(search)'
+    },
     /** The filtered data. */
-    output: {computed: 'searched(data, search, index, minScore, limit)', notify: true},
+    output: {computed: 'searched(data, _search, index, minScore, limit)', notify: true},
     /** If no Stop Words (no-stop-words)*/
     noStopWords: {type:Boolean, value:false},
     /** The lunr Index. */
@@ -36,6 +39,12 @@ Polymer({
     minScore: {type: Number, value: 0},
     /** Whether you would like console.log output. */
     log: Boolean
+  },
+  debounceInput: function(data){
+    this.debounce("setInput", this.setInput, 1200)
+  },
+  setInput: function(){
+    this._search = this.search
   },
   /**
     Filters your input data
