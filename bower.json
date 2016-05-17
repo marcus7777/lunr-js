@@ -1,11 +1,11 @@
 {
   "name": "lunr-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/marcus7777/lunr-js",
   "authors": [
     "Marcus Hitchins <marcus7777@gmail.com>"
   ],
-  "description": "polymer rapper for https://github.com/olivernn/lunr.js",
+  "description": "polymer rapper for /n# lunr.js /n## [Simple full-text search in your browser](https://github.com/olivernn/lunr.js)",
   "keywords": [
     "search",
     "web-components",
