@@ -82,7 +82,11 @@ Polymer({
       if (Array.isArray(fields) && fields.length > 0) {
         return lunr(function () {
           for (var i = 0; i < fields.length; i++) {
-            this.field(fields[i])
+            if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
+              this.field(fields[i], { boost: 10 })
+            } else {
+              this.field(fields[i])
+            }
           }
         })
       
@@ -94,7 +98,7 @@ Polymer({
         fields = []
         ddup = {}
         return lunr(function () {
-          for (var indexOfData = 0; indexOfData > data.length; indexOfData++) {
+          for (var indexOfData = 0; indexOfData < data.length; indexOfData++) {
             for (var prop in data[indexOfData]) {
               if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
                 fields.push(prop)
