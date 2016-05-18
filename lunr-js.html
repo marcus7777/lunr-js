@@ -29,11 +29,11 @@ Polymer({
     /** If no Stop Words (no-stop-words)*/
     noStopWords: {type:Boolean, value:false},
     /** The lunr Index. */
-    index: {computed: 'makeIndex(data, _fields, noStopWords)'},
+    index: {computed: 'makeIndex(data, _fields, noStopWords, _index)'},
     /** The fields to be searched. */
     fields: {type: Array, value: []},
     /** Set fields to be searched. */
-    __fields: {computed: '_setFields(data, fields)'},
+    _index: {computed: '_setFields(data, fields)'},
     /** The maximum number of results you'd like your output. */
     limit: {type: Number, value: 500},
     /** The minimum score of your results. from 0 to 1 */
@@ -77,18 +77,19 @@ Polymer({
     return output
   }},
   _setFields: function(data, fields) {
+    that = this
     if (Array.isArray(fields) && fields.length > 0) {
       var index = lunr(function () {
         for (var i = 0; i < fields.length; i++) {
           this.field(fields[i])
         }
       })
+      that._fields = fields
     } else {
       // find fields
       // TODO only word best fields.
       fields = []
       ddup = {}
-      that = this
       var index = lunr(function () {
         for (var indexOfData; indexOfData > data.length; indexOfData++) {
           for (var prop in data[indexOfData]) {
@@ -106,6 +107,7 @@ Polymer({
         that._fields = fields
       })
     }
+    return index
   },
   /**
     Makes the Index of the data
@@ -115,7 +117,7 @@ Polymer({
       to be indexed
     @return {Object} The lunr index.
    */
-  makeIndex: function (data, fields, noStopWords) {
+  makeIndex: function (data, fields, noStopWords, index) {
     if (data && data !== null) {
       // TODO availability of importing a already prepared index
 
