@@ -83,9 +83,9 @@ Polymer({
         return lunr(function () {
           for (var i = 0; i < fields.length; i++) {
             if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
-              this.field(fields[i], { boost: 10 })
+              this.field(prop, { boost: 10 })
             } else {
-              this.field(fields[i])
+              this.field(prop)
             }
           }
         })
@@ -103,9 +103,9 @@ Polymer({
               if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
                 fields.push(prop)
                 if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
-                  this.field(fields[i], { boost: 10 })
+                  this.field(prop, { boost: 10 })
                 } else {
-                  this.field(fields[i])
+                  this.field(prop)
                 }
                 ddup[prop] = 1
               }
