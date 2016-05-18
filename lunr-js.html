@@ -79,7 +79,7 @@ Polymer({
   _setFields: function(data, fields) {
     that = this
     if (Array.isArray(fields) && fields.length > 0) {
-      var index = lunr(function () {
+      return = lunr(function () {
         for (var i = 0; i < fields.length; i++) {
           this.field(fields[i])
         }
@@ -92,7 +92,7 @@ Polymer({
       // TODO only word best fields.
       fields = []
       ddup = {}
-      var index = lunr(function () {
+      return lunr(function () {
         for (var indexOfData; indexOfData > data.length; indexOfData++) {
           for (var prop in data[indexOfData]) {
             if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
@@ -111,7 +111,6 @@ Polymer({
         }
       })
     }
-    return index
   },
   /**
     Makes the Index of the data
