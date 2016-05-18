@@ -137,7 +137,8 @@ Polymer({
       for (var i = 0; i < data.length; i++) {
         var toIndex = {id: i}
         for (var f = 0;f < fields.length; f++) {
-          if (data[i].hasOwnProperty(fields[f]) && data[i][fields[f]] !== null) {
+          if (data[i].hasOwnProperty(fields[f]) && data[i][fields[f]] !== null && 
+              data[i][fields[f]].split(' ').length > 3) { //contains at least three spaces to indicate that they might be words in it
             toIndex[fields[f]] = data[i][fields[f]].toString()
           } else {
             toIndex[fields[f]] = ""
