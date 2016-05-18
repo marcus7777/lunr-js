@@ -105,6 +105,11 @@ Polymer({
             for (var prop in data[indexOfData]) {
               if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
                 fields.push(prop)
+                if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
+                  this.field(fields[i], { boost: 10 })
+                } else {
+                  this.field(fields[i])
+                }
                 ddup[prop] = 1
               }
             }
