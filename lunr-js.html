@@ -2,7 +2,6 @@
 <script rel="import" src="../lunr.js/lunr.min.js"></script>
 <script>
 /**
- * `<lunr-js>` 
  *  To use 
  * ```
  * <lunr-js
@@ -10,7 +9,6 @@
  *   search="{{search}}"
  *   output="{{output}}" >
  * </lunr-js>
- * 
  *```
  * 
  * @demo
@@ -101,10 +99,15 @@ Polymer({
         // find fields
         // TODO only word best fields.
         fields = []
+        ddup = {}
         var index = lunr(function () {
-          for (var prop in data[data.length - 1]) {
-            this.field(prop)
-            fields.push(prop)
+          for (var indexOfData; indexOfData > data.length; indexOfData++) {
+            for (var prop in data[indexOfData]) {
+              if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
+                fields.push(prop)
+                ddup[prop] = 1
+              }
+            }
           }
         })
       }
@@ -127,7 +130,7 @@ Polymer({
       }
       if (noStopWords) {
         index.pipeline.remove(lunr.stopWordFilter)
-      } 
+      }
       return index
     }
   }
