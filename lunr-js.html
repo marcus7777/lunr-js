@@ -84,7 +84,9 @@ Polymer({
           this.field(fields[i])
         }
       })
+      
       that._fields = fields
+      
     } else {
       // find fields
       // TODO only word best fields.
@@ -104,7 +106,9 @@ Polymer({
             }
           }
         }
-        that._fields = fields
+        if (fields.length > 0) {
+          that._fields = fields
+        }
       })
     }
     return index
