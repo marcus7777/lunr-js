@@ -77,7 +77,7 @@ Polymer({
     return output
   }},
   _setFields: function(data, fields) {
-    thatLunrJs = this
+    var thatLunrJs = this
     if (Array.isArray(data) && data.length > 0) {
       if (Array.isArray(fields) && fields.length > 0) {
         return lunr(function () {
@@ -95,8 +95,8 @@ Polymer({
       } else {
         // find fields
         // TODO only word best fields.
-        fields = []
-        ddup = {}
+        var fields = []
+        var ddup = {}
         return lunr(function () {
           for (var indexOfData = 0; indexOfData < data.length; indexOfData++) {
             for (var prop in data[indexOfData]) {
