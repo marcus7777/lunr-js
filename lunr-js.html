@@ -139,6 +139,8 @@ Polymer({
         for (var f = 0;f < fields.length; f++) {
           if (data[i].hasOwnProperty(fields[f]) && data[i][fields[f]] !== null) {
             toIndex[fields[f]] = data[i][fields[f]].toString()
+          } else {
+            toIndex[fields[f]] = ""
           }
         }
         index.add(toIndex)
