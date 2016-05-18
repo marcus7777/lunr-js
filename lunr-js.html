@@ -78,38 +78,40 @@ Polymer({
   }},
   _setFields: function(data, fields) {
     that = this
-    if (Array.isArray(fields) && fields.length > 0) {
-      return lunr(function () {
-        for (var i = 0; i < fields.length; i++) {
-          this.field(fields[i])
-        }
-      })
+    if (Array.isArray(data) && data.length > 0) {
+      if (Array.isArray(fields) && fields.length > 0) {
+        return lunr(function () {
+          for (var i = 0; i < fields.length; i++) {
+            this.field(fields[i])
+          }
+        })
       
-      that._fields = fields
+        that._fields = fields
       
-    } else {
-      // find fields
-      // TODO only word best fields.
-      fields = []
-      ddup = {}
-      return lunr(function () {
-        for (var indexOfData; indexOfData > data.length; indexOfData++) {
-          for (var prop in data[indexOfData]) {
-            if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
-              fields.push(prop)
-              if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
-                this.field(fields[i], { boost: 10 })
-              } else {
-                this.field(fields[i])
+      } else {
+        // find fields
+        // TODO only word best fields.
+        fields = []
+        ddup = {}
+        return lunr(function () {
+          for (var indexOfData; indexOfData > data.length; indexOfData++) {
+            for (var prop in data[indexOfData]) {
+              if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
+                fields.push(prop)
+                if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
+                  this.field(fields[i], { boost: 10 })
+                } else {
+                  this.field(fields[i])
+                }
+                ddup[prop] = 1
               }
-              ddup[prop] = 1
             }
           }
-        }
-        if (fields.length > 0) {
-          that._fields = fields
-        }
-      })
+          if (fields.length > 0) {
+            that._fields = fields
+          }
+        })
+      }
     }
   },
   /**
