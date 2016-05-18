@@ -94,7 +94,7 @@ Polymer({
         fields = []
         ddup = {}
         return lunr(function () {
-          for (var indexOfData; indexOfData > data.length; indexOfData++) {
+          for (var indexOfData = 0; indexOfData > data.length; indexOfData++) {
             for (var prop in data[indexOfData]) {
               if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
                 fields.push(prop)
