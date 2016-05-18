@@ -29,9 +29,11 @@ Polymer({
     /** If no Stop Words (no-stop-words)*/
     noStopWords: {type:Boolean, value:false},
     /** The lunr Index. */
-    index: {computed: 'makeIndex(data, fields, noStopWords)'},
+    index: {computed: 'makeIndex(data, _fields, noStopWords)'},
     /** The fields to be searched. */
     fields: {type: Array, value: []},
+    /** Set fields to be searched. */
+    __fields: {computed: '_setFields(data, fields)'},
     /** The maximum number of results you'd like your output. */
     limit: {type: Number, value: 500},
     /** The minimum score of your results. from 0 to 1 */
@@ -39,6 +41,7 @@ Polymer({
     /** Whether you would like console.log output. */
     log: Boolean
   },
+  
   debounceInput: function(data){
     this.debounce("setInput", this.setInput, 1200)
   },
@@ -73,6 +76,37 @@ Polymer({
     }
     return output
   }},
+  _setFields: function(data, fields) {
+    if (Array.isArray(fields) && fields.length > 0) {
+      var index = lunr(function () {
+        for (var i = 0; i < fields.length; i++) {
+          this.field(fields[i])
+        }
+      })
+    } else {
+      // find fields
+      // TODO only word best fields.
+      fields = []
+      ddup = {}
+      that = this
+      var index = lunr(function () {
+        for (var indexOfData; indexOfData > data.length; indexOfData++) {
+          for (var prop in data[indexOfData]) {
+            if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
+              fields.push(prop)
+              if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
+                this.field(fields[i], { boost: 10 })
+              } else {
+                this.field(fields[i])
+              }
+              ddup[prop] = 1
+            }
+          }
+        }
+        that._fields = fields
+      })
+    }
+  },
   /**
     Makes the Index of the data
     
@@ -88,35 +122,6 @@ Polymer({
       if (this.log) {
         var start = performance.now()
       }
-
-      if (Array.isArray(fields) && fields.length > 0) {
-        var index = lunr(function () {
-          for (var i = 0; i < fields.length; i++) {
-            this.field(fields[i])
-          }
-        })
-      } else {
-        // find fields
-        // TODO only word best fields.
-        fields = []
-        ddup = {}
-        var index = lunr(function () {
-          for (var indexOfData; indexOfData > data.length; indexOfData++) {
-            for (var prop in data[indexOfData]) {
-              if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
-                fields.push(prop)
-                if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
-                  this.field(fields[i], { boost: 10 })
-                } else {
-                  this.field(fields[i])
-                }
-                ddup[prop] = 1
-              }
-            }
-          }
-        })
-      }
-      // setup boosts TODO
 
       for (var i = 0; i < data.length; i++) {
         var toIndex = {id: i}
