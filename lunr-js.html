@@ -77,7 +77,7 @@ Polymer({
     return output
   }},
   _setFields: function(data, fields) {
-    that = this
+    thatLunrJs = this
     if (Array.isArray(data) && data.length > 0) {
       if (Array.isArray(fields) && fields.length > 0) {
         return lunr(function () {
@@ -90,7 +90,7 @@ Polymer({
           }
         })
       
-        that._fields = fields
+        thatLunrJs._fields = fields
       
       } else {
         // find fields
@@ -112,7 +112,7 @@ Polymer({
             }
           }
           if (fields.length > 0) {
-            that._fields = fields
+            thatLunrJs._fields = fields
           }
         })
       }
