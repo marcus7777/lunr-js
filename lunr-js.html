@@ -64,7 +64,7 @@ Polymer({
       var searched = index.search(search)
       var output = []
       for (var i = 0; i < searched.length; i++) {
-        if (i === limit || searched[i].score < minScore) { break; }
+        if (i === limit || searched[i].score < minScore) { break }
         output.push(data[searched[i].ref])
       }
     } else {
@@ -138,7 +138,8 @@ Polymer({
         var toIndex = {id: i}
         for (var f = 0;f < fields.length; f++) {
           if (data[i].hasOwnProperty(fields[f]) && data[i][fields[f]] !== null && 
-              data[i][fields[f]].toString().split(' ').length > 3) { //contains at least three spaces to indicate that they might be words in it
+             (data[i][fields[f]].toString().split(' ').length > 2 ||data[i][fields[f]].toString().length < 30)
+             ) { //indicate that they might be words in it
             toIndex[fields[f]] = data[i][fields[f]].toString()
           } else {
             toIndex[fields[f]] = ""
