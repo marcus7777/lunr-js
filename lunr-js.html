@@ -79,7 +79,7 @@ Polymer({
   _setFields: function(data, fields) {
     that = this
     if (Array.isArray(fields) && fields.length > 0) {
-      return = lunr(function () {
+      return lunr(function () {
         for (var i = 0; i < fields.length; i++) {
           this.field(fields[i])
         }
