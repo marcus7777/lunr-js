@@ -80,17 +80,16 @@ Polymer({
     var thatLunrJs = this
     if (Array.isArray(data) && data.length > 0) {
       if (Array.isArray(fields) && fields.length > 0) {
+        this._fields = fields
         return lunr(function () {
           for (var i = 0; i < fields.length; i++) {
-            if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
-              this.field(prop, { boost: 10 })
+            if (fields[i].charAt(0) === fields[i].charAt(0).toUpperCase()) {
+              this.field(fields[i], { boost: 10 })
             } else {
-              this.field(prop)
+              this.field(fields[i])
             }
           }
         })
-      
-        thatLunrJs._fields = fields
       
       } else {
         // find fields
