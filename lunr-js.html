@@ -100,7 +100,7 @@ Polymer({
           for (var indexOfData = 0; indexOfData < data.length; indexOfData++) {
             for (var prop in data[indexOfData]) {
               if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop) && 
-                 (data[i][fields[f]].toString().split(' ').length > 2 ||nmdata[i][fields[f]].toString().length < 30)) {
+                 (prop.toString().split(' ').length > 2 || prop.toString().length < 30)) {
                 fields.push(prop)
                 if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
                   this.field(prop, { boost: 10 })
@@ -138,7 +138,7 @@ Polymer({
         var toIndex = {id: i}
         for (var f = 0;f < fields.length; f++) {
           if (data[i].hasOwnProperty(fields[f]) && data[i][fields[f]] !== null && 
-             (data[i][fields[f]].toString().split(' ').length > 2 ||data[i][fields[f]].toString().length < 30)
+             (data[i][fields[f]].toString().split(' ').length > 2 || data[i][fields[f]].toString().length < 30)
              ) { //indicate that they might be words in it
             toIndex[fields[f]] = data[i][fields[f]].toString()
           } else {
