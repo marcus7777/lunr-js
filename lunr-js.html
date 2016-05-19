@@ -99,7 +99,8 @@ Polymer({
         return lunr(function () {
           for (var indexOfData = 0; indexOfData < data.length; indexOfData++) {
             for (var prop in data[indexOfData]) {
-              if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop)) {
+              if (prop.charAt(0) !== "_" && !ddup.hasOwnProperty(prop) && 
+                 (data[i][fields[f]].toString().split(' ').length > 2 ||nmdata[i][fields[f]].toString().length < 30)) {
                 fields.push(prop)
                 if (prop.charAt(0) === prop.charAt(0).toUpperCase()) {
                   this.field(prop, { boost: 10 })
