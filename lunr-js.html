@@ -25,7 +25,7 @@ Polymer({
     },
     _search: {value:""},
     /** The filtered data. */
-    output: {computed: 'searched(data, _search, index, minScore, limit)', notify: true},
+    output: {computed: 'searched(data.*, _search, index, minScore, limit)', notify: true},
     /** If no Stop Words (no-stop-words)*/
     noStopWords: {type:Boolean, value:false},
     /** The lunr Index. */
@@ -59,19 +59,19 @@ Polymer({
     
     @return {Array} The filtered data.
    */
-  searched: function (data, search, index, minScore, limit) { if (data) {
+  searched: function (data, search, index, minScore, limit) { if (data.base) {
     if (""+search !== "") {
       var searched = index.search(search)
       var output = []
       for (var i = 0; i < searched.length; i++) {
         if (i === limit || searched[i].score < minScore) { break }
-        output.push(data[searched[i].ref])
+        output.push(data.base[searched[i].ref])
       }
     } else {
       var output = []
-      for (var i = 0; i < data.length; i++) {
+      for (var i = 0; i < data.base.length; i++) {
         if (i === limit) { break; }
-        output.push(data[i])
+        output.push(data.base[i])
       }
     }
     return output
