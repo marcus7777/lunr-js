@@ -60,17 +60,28 @@ Polymer({
     @return {Array} The filtered data.
    */
   searched: function (data, search, index, minScore, limit) { if (data.base) {
+    var output = []
     if (""+search !== "") {
       var searched = index.search(search)
+      for (var i = 0; i < searched.length; i++) {
+        if (i === limit || searched[i].score < minScore) { break }
+        output.push(data.base[searched[i].ref])
+      }
+    }
+    if (output.length === 0 && !this.noStopWords && ""+search !== "") {
+      if (!this.indexNoStopWords) {
+        this.indexNoStopWords = this.makeIndex(data, this._fields, true, index)
+      }
+      searched = this.indexNoStopWords.search(search)
       var output = []
       for (var i = 0; i < searched.length; i++) {
         if (i === limit || searched[i].score < minScore) { break }
         output.push(data.base[searched[i].ref])
       }
-    } else {
+    } else if (output.length === 0) {
       var output = []
       for (var i = 0; i < data.base.length; i++) {
-        if (i === limit) { break; }
+        if (i === limit) { break }
         output.push(data.base[i])
       }
     }

@@ -21,25 +21,31 @@
         var lunrJs;
         var lookFor = ""+(Math.floor(Math.random() * 3) + 1)  
         setup(function () {
-          lunrJs = fixture('lunrJs');
-          lunrJs.data = [{test:1},{test:2},{test:3}];
+          lunrJs = fixture('lunrJs')
+          lunrJs.data = [{test:1},{test:2},{test:3},{test:"ama"}]
         });
         teardown(function () {
           //...
         });
         suite('basic usage', function () {
           test('can find 1,2 or 3', function(done) {
-            lunrJs.search = lookFor;
+            lunrJs._search = lookFor
             if (lunrJs.output[0].test == lookFor) {
-              done();
+              done()
             }
-          });
+          })
+          test('can find ama searching for am', function(done) {
+            lunrJs._search = "am"
+            if (lunrJs.output[0].test == "ama") {
+              done()
+            }
+          })
           test('can not find 4', function(done) {
-            lunrJs.search = 4;
+            lunrJs._search = 4
             if (!lunrJs.output[0]) {
-              done();
+              done()
             }
-          });
+          })
         });
       });
     </script>
