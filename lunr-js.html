@@ -149,7 +149,7 @@ Polymer({
         var toIndex = {id: i}
         for (var f = 0;f < fields.length; f++) {
           if (data[i].hasOwnProperty(fields[f]) && data[i][fields[f]] !== null && 
-             getClass.call(data[i][fields[f]].toString) == '[object Function]' &&
+             typeof data[i][fields[f]].toString == 'function' &&
              (data[i][fields[f]].toString().split(' ').length > 2 || data[i][fields[f]].toString().length < 30)
              ) { //indicate that they might be words in it
             toIndex[fields[f]] = data[i][fields[f]].toString()
