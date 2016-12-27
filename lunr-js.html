@@ -78,12 +78,6 @@ Polymer({
         if (i === limit || searched[i].score < minScore) { break }
         output.push(data.base[searched[i].ref])
       }
-    } else if (output.length === 0) {
-      var output = []
-      for (var i = 0; i < data.base.length; i++) {
-        if (i === limit) { break }
-        output.push(data.base[i])
-      }
     }
     return output
   }},
